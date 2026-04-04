@@ -35,7 +35,12 @@
         py_jk: py_jk {
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
-            bindings = <&none &kp P &kp Y &kp T &kp H &kp O &kp N &kp N3 &kp SPACE &kp J &kp K &kp DOT &kp P &kp Y &kp RET>;
+            bindings = <&none
+                &kp P &kp Y &kp T &kp H &kp O &kp N &kp NUMBER_3
+                &kp SPACE
+                &kp J &kp K &kp DOT &kp P &kp Y
+                &kp RET
+            >;
             label = "PY_JK";
         };
 
@@ -47,12 +52,12 @@
             bindings = <&none
                 &kp LG(LS(P))
                 &kp RET
-                &kp P &kp Y &kp T &kp H &kp O &kp N &kp N3
+                &kp P &kp Y &kp T &kp H &kp O &kp N &kp NUMBER_3
                 &kp SPACE
                 &kp J &kp K &kp DOT &kp P &kp Y
                 &kp RET
             >;
-            label = "R_JK";
+            label = "RUN_JK";
         };
     };
 
@@ -62,9 +67,9 @@
         u2final_layer {
             label = "U2F";
             bindings = 
-                &r_enter  &h_enter  &p_enter       &py_jk
-                &r_jk     &trans    &trans         &trans
-                &trans    &trans    &bootloader    &to 1
+                &r_enter  &h_enter  &p_enter     &py_jk
+                &run_jk   &trans    &trans       &trans
+                &trans    &trans    &bootloader  &to 1
             >;
         };
 
@@ -98,7 +103,7 @@
         vscode_layer {
             label = "IDE";
             bindings = 
-                &kp LG(P)    &kp LS(LG(P))  &kp LG(B)      &r_jk
+                &kp LG(P)    &kp LS(LG(P))  &kp LG(B)      &kp LG(FSLH)
                 &kp LG(D)    &kp LS(LG(L))  &kp LG(F)      &kp LG(Z)
                 &kp LG(SQT)  &kp LS(LG(F))  &kp LS(LG(E))  &to 5
             >;
