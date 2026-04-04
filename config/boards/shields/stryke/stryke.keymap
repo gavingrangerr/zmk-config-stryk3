@@ -10,53 +10,106 @@
             bindings = <&none &kp G &kp A &kp V &kp I &kp N &kp DOT &kp G &kp R &kp A &kp N &kp G &kp E &kp R &kp R &kp AT &kp G &kp M &kp A &kp I &kp L &kp DOT &kp C &kp O &kp M>;
             label = "EMAIL";
         };
+
+        r_enter: r_enter {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&none &kp R &kp RET>;
+            label = "R_ENTER";
+        };
+
+        h_enter: h_enter {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&none &kp H &kp RET>;
+            label = "H_ENTER";
+        };
+
+        p_enter: p_enter {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&none &kp P &kp RET>;
+            label = "P_ENTER";
+        };
+
+        py_jk: py_jk {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&none &kp P &kp Y &kp T &kp H &kp O &kp N &kp N3 &kp SPACE &kp J &kp K &kp DOT &kp P &kp Y &kp RET>;
+            label = "PY_JK";
+        };
+
+        run_jk: run_jk {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            wait-ms = <50>;
+            tap-ms = <20>;
+            bindings = <&none
+                &kp LG(LS(P))
+                &kp RET
+                &kp P &kp Y &kp T &kp H &kp O &kp N &kp N3
+                &kp SPACE
+                &kp J &kp K &kp DOT &kp P &kp Y
+                &kp RET
+            >;
+            label = "R_JK";
+        };
     };
 
     keymap {
         compatible = "zmk,keymap";
 
+        u2final_layer {
+            label = "U2F";
+            bindings = 
+                &r_enter  &h_enter  &p_enter       &py_jk
+                &r_jk     &trans    &trans         &trans
+                &trans    &trans    &bootloader    &to 1
+            >;
+        };
+
         base_layer {
             label = "Base";
-            bindings = <
+            bindings = 
                 &kp LG(C)       &kp LG(V)       &kp LG(X)      &kp LG(Z)
                 &kp LG(A)       &kp LG(S)       &kp LG(LC(Q))  &email
-                &kp LG(LS(N3))  &kp LG(LS(N4))  &bootloader    &to 1
+                &kp LG(LS(N3))  &kp LG(LS(N4))  &bootloader    &to 2
             >;
         };
 
         kicad_layer {
             label = "EDA";
-            bindings = <
+            bindings = 
                 &kp R  &kp M  &kp G  &kp DEL
                 &kp V  &kp E  &kp X  &kp W
-                &kp B  &kp F  &kp H  &to 2
+                &kp B  &kp F  &kp H  &to 3
             >;
         };
 
         fusion_layer {
             label = "CAD";
-            bindings = <
+            bindings = 
                 &kp LG(K)   &kp R       &kp L       &kp D
                 &kp E       &kp Q       &kp F       &kp LG(Z)
-                &kp LG(N1)  &kp LG(N2)  &kp LG(N0)  &to 3
+                &kp LG(N1)  &kp LG(N2)  &kp LG(N0)  &to 4
             >;
         };
 
         vscode_layer {
             label = "IDE";
-            bindings = <
-                &kp LG(P)    &kp LS(LG(P))  &kp LG(B)      &kp LG(FSLH)
+            bindings = 
+                &kp LG(P)    &kp LS(LG(P))  &kp LG(B)      &r_jk
                 &kp LG(D)    &kp LS(LG(L))  &kp LG(F)      &kp LG(Z)
-                &kp LG(SQT)  &kp LS(LG(F))  &kp LS(LG(E))  &to 4
+                &kp LG(SQT)  &kp LS(LG(F))  &kp LS(LG(E))  &to 5
             >;
         };
 
         arduino_layer {
             label = "MCU";
-            bindings = <
+            bindings = 
                 &kp LG(R)   &kp LG(U)   &kp LS(LG(M))  &kp LG(K)
                 &kp LG(T)   &kp LG(Z)   &kp LG(L)      &kp LG(S)
-                &bt BT_CLR  &bt BT_NXT  &sys_reset     &to 0
+                &bt BT_CLR  &bt BT_NXT  &sys_reset      &to 0
             >;
         };
     };
